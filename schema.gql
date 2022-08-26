@@ -1,0 +1,24 @@
+type groups {
+  name: String @unique
+  card_position: [String!]
+}
+
+type song {
+  name: String @unique
+  type: SongType
+  artist: groups @relation
+  length: Int!
+  card: [String!]
+}
+
+enum SongType {
+  NORMAL
+  LIMITED
+  EVENT
+}
+
+type Query {
+  all_song: [song!]
+  all_groups: [groups!]
+  findGroupsByName(name: String!): groups
+}
