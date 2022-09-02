@@ -1,7 +1,16 @@
-import '../styles/globals.css'
+import "bootstrap/scss/bootstrap.scss";
+import Layout from "../components/layout";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Layout>
+        <main className="container">
+          <Component {...pageProps} />
+        </main>
+      </Layout>
+    </>
+  );
 }
 
-export default MyApp
+export default MyApp;

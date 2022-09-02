@@ -20,5 +20,7 @@ enum SongType {
 type Query {
   all_song: [song!]
   all_groups: [groups!]
-  findGroupsByName(name: String!): groups
+  findGroupsByName(name: String!): [groups!]
+  listSongByGroup(id: String!): [song!]
+    @resolver(name: "song_search_by_group", paginated: true)
 }
