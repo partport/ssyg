@@ -1,13 +1,12 @@
-import "bootstrap/scss/bootstrap.scss";
-import Layout from "../components/layout";
+import 'bootstrap/scss/bootstrap.scss';
+import '../styles/globals.css';
+import Layout from '../components/layout';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Layout>
-        <main className="container">
-          <Component {...pageProps} />
-        </main>
+        <Component {...pageProps} />
       </Layout>
     </>
   );

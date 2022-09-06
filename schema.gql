@@ -1,14 +1,17 @@
 type groups {
   name: String @unique
   card_position: [String!]
+  debut: Date
+  order: Int
 }
 
 type song {
   name: String @unique
   type: SongType
   artist: groups @relation
-  length: Int!
+  length: Int
   card: [String!]
+  order: Int
 }
 
 enum SongType {

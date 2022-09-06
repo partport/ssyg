@@ -1,12 +1,13 @@
-import Header from "./header";
+import Header from './header';
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <>
-      <Header/>
-      {children}
+      {/* <Header/> */}
+
+      <main className='container py-5'>{children}</main>
     </>
   );
-}
+};
 
 export default Layout;
