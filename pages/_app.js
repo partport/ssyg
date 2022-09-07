@@ -1,4 +1,5 @@
 import 'bootstrap/scss/bootstrap.scss';
+import '../styles/tailwindcss.css';
 import '../styles/globals.css';
 import Layout from '../components/layout';
 
