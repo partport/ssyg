@@ -8,7 +8,7 @@ import {
   Radio,
   Label,
 } from 'flowbite-react';
-import CardGrade from '@/components/theme/CardGrade';
+import CardGrade from '@/components/card/CardGrade';
 import { SONG_TYPE } from 'constants';
 import { useRef, useState } from 'react';
 import ButtonEdit from '../button/ButtonEdit';
