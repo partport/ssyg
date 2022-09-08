@@ -3,10 +3,12 @@ import { useRouter } from 'next/router';
 import useSWR, { mutate } from 'swr';
 import CardArtist from '@/components/card/CardArtist';
 import { Alert, Spinner } from 'flowbite-react';
+import { getAllSong } from '@/lib/fauna';
+import { findIndexMaxLvThemeInGroup } from '@/lib/fn';
 const fetcher = (...args) => axios(...args).then((res) => res.data);
 const API_PATH = '/api/groups';
 
-const GroupsPage = () => {
+const GroupsPage = (props) => {
   const router = useRouter();
   const { data: groupList, error } = useSWR(API_PATH, fetcher);
   if (error) {
@@ -47,3 +49,13 @@ const GroupsPage = () => {
 };
 
 export default GroupsPage;
+
+export const getStaticProps = async (ctx) => {
+  const data = await getAllSong();
+
+  return {
+    props: {
+      data,
+    },
+  };
+};

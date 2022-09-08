@@ -1,6 +1,6 @@
 import { Reorder, useDragControls, useMotionValue } from 'framer-motion';
 import { useState } from 'react';
-import { ReorderIcon } from '../components/DragIcon';
+import { ReorderIcon } from '../components/icon/DragIcon';
 const initialItems = ['🍅 Tomato', '🥒 Cucumber', '🧀 Cheese', '🥬 Lettuce'];
 
 const ListPage = () => {

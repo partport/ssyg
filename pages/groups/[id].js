@@ -7,7 +7,12 @@ import classNames from 'classnames';
 import CardTheme from '@/components/card/CardTheme';
 import { SONG_TYPE } from 'constants';
 import ButtonAdd from '@/components/button/ButtonAdd';
-import { Alert, Spinner } from 'flowbite-react';
+import { Alert, Card, Spinner } from 'flowbite-react';
+import {
+  currentThemePoint,
+  totalThemePoint,
+  findIndexMaxLvThemeInGroup,
+} from '@/lib/fn';
 
 const fetcher = (...args) => axios(...args).then((res) => res.data);
 const API_PATH = '/api/song';
@@ -123,10 +128,20 @@ const GroupsDetail = () => {
     }
   };
 
+  // findIndexMaxLvThemeInGroup(songs)
   return (
     <div className='flex flex-col'>
-      <div className='w-[24rem]'>
-        <CardArtist name={ARTIST} />
+      <div className='flex gap-4'>
+        <div className='w-[24rem]'>
+          <CardArtist name={ARTIST} />
+        </div>
+        <div>
+          <Card>
+            <p>
+              {currentThemePoint(songs)}/{totalThemePoint(songs.length)}
+            </p>
+          </Card>
+        </div>
       </div>
       <div className='flex justify-end gap-2 mb-2'>
         <ButtonAdd onClick={handleNewSong} />

@@ -14,6 +14,7 @@ const CardArtist = (props) => {
         }
       }
       whileTap={onClick && { scale: 0.9 }}
+      style={onClick && {cursor:'pointer'}}
     >
       <Card
         onClick={onClick}

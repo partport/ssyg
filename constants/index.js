@@ -12,3 +12,12 @@ export const CARD_GRADE = {
   C: 'C',
   NONE: '-',
 };
+
+export const THEME_POINT = {
+  [CARD_GRADE.R]: 40,
+  [CARD_GRADE.S]: 25,
+  [CARD_GRADE.A]: 15,
+  [CARD_GRADE.B]: 8,
+  [CARD_GRADE.C]: 3,
+  [CARD_GRADE.NONE]: 0,
+};

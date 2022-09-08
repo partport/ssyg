@@ -2,12 +2,18 @@
 import '@/styles/tailwindcss.css';
 import '@/styles/globals.css';
 import Layout from '@/components/layout';
-import { getAllGroups } from '@/lib/fauna';
+import useSWR, { mutate } from 'swr';
+import axios from 'axios';
 
-const MyApp = ({ Component, pageProps,groups }) => {
+const fetcher = (...args) => axios(...args).then((res) => res.data);
+const API_PATH = '/api/groups';
+
+const MyApp = ({ Component, pageProps }) => {
+  const { data, error } = useSWR(API_PATH, fetcher);
+
   return (
     <>
-      <Layout groups={groups}>
+      <Layout groups={data}>
         <Component {...pageProps} />
       </Layout>
     </>
@@ -15,8 +21,3 @@ const MyApp = ({ Component, pageProps,groups }) => {
 };
 
 export default MyApp;
-
-MyApp.getInitialProps = async (ctx) => {
-  const data = await getAllGroups()
-  return { groups: data }
-}
