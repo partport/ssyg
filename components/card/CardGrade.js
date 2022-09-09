@@ -1,12 +1,11 @@
 import classNames from 'classnames';
 import { CARD_GRADE } from 'constants';
 import { TextInput } from 'flowbite-react';
-import { useRef, useState } from 'react';
+import {  useState } from 'react';
 
 const CardGrade = (props) => {
-  const { grade, isEdit, onCardEdit } = props;
+  const { grade, isEdit=false, onCardEdit } = props;
   const [cardGrade, setCardGrade] = useState(grade.toUpperCase());
-  const ref = useRef();
 
   const handleOnBlurInput = (value) => {
     setCardGrade(value.toUpperCase());

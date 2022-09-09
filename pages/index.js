@@ -1,14 +1,19 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 import CardArtist from '@/components/card/CardArtist';
 import { Alert, Spinner } from 'flowbite-react';
 import { getAllSong } from '@/lib/fauna';
-import { findIndexMaxLvThemeInGroup } from '@/lib/fn';
+import { findTopFiveTheme } from '@/lib/fn';
+import CardGrade from '@/components/card/CardGrade';
+import ListGrades from '@/components/list/ListGrades';
+import CardThemeTopFive from '@/components/card/CardThemeTopFive';
 const fetcher = (...args) => axios(...args).then((res) => res.data);
 const API_PATH = '/api/groups';
 
 const GroupsPage = (props) => {
+  const { themes } = props;
+
   const router = useRouter();
   const { data: groupList, error } = useSWR(API_PATH, fetcher);
   if (error) {
@@ -33,9 +38,12 @@ const GroupsPage = (props) => {
     router.push(`/groups/${_id}`);
   };
 
+  const TOP_FIVE_THEME = findTopFiveTheme(themes);
+
   return (
     <>
-      <div className='mx-auto grid grid-cols-4 gap-4'>
+      <CardThemeTopFive themes={themes} topFive={TOP_FIVE_THEME}/>
+      <div className='mx-auto grid grid-cols-4 gap-4 mt-4'>
         {groupList.map((item) => (
           <CardArtist
             name={item.name}
@@ -55,7 +63,7 @@ export const getStaticProps = async (ctx) => {
 
   return {
     props: {
-      data,
+      themes: data,
     },
   };
 };

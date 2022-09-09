@@ -1,18 +1,14 @@
-import {
-  Card,
-  Badge,
-  TextInput,
-  Select,
-} from 'flowbite-react';
+import { Card, Badge, TextInput, Select } from 'flowbite-react';
 import CardGrade from '@/components/card/CardGrade';
 import { SONG_TYPE } from 'constants';
 import { useRef, useState } from 'react';
 import ButtonEdit from '../button/ButtonEdit';
 import ButtonDelete from '../button/ButtonDelete';
 import ButtonSave from '../button/ButtonSave';
+import ListGrades from '../list/ListGrades';
 
 const CardTheme = (props) => {
-  const { name, order, type, grades, isNew, onSave, onCancel } = props;
+  const { name, order, type, grades, isNew=false, onSave, onCancel } = props;
   const [isEdit, setIsEdit] = useState(false);
   const [themeName, setThemeName] = useState(name);
   const [card, setCard] = useState(grades);
@@ -38,7 +34,7 @@ const CardTheme = (props) => {
           card,
         },
       };
-      onSave(data)
+      onSave(data);
     } else {
       const type = refType.current.value;
       const data = {
@@ -49,10 +45,10 @@ const CardTheme = (props) => {
           type,
           length: card.length,
           card,
-          isNew:!isNew
+          isNew: !isNew,
         },
       };
-      onSave(data)
+      onSave(data);
     }
   };
   const handleOnCancel = () => {
@@ -69,13 +65,18 @@ const CardTheme = (props) => {
 
   return (
     <Card>
-      <div className='grid gap-4 grid-cols-2'>
+      <div className='grid gap-4 grid-cols-2 overflow-auto'>
         <div className='flex flex-col'>
           <div className='flex items-center gap-2 mb-2'>
             {isEdit || isNew ? (
               <>
                 <div className='w-14'>
-                  <TextInput id='order' defaultValue={order} type='number' ref={refOrder}/>
+                  <TextInput
+                    id='order'
+                    defaultValue={order}
+                    type='number'
+                    ref={refOrder}
+                  />
                 </div>
                 <TextInput
                   id='name'
@@ -114,16 +115,11 @@ const CardTheme = (props) => {
             )}
           </div>
         </div>
-        <div className='flex gap-2 flex-wrap text-white text-sm font-bold font-mono w-[30rem]'>
-          {grades.map((card, index) => (
-            <CardGrade
-              grade={card}
-              key={index}
-              isEdit={isEdit || isNew}
-              onCardEdit={(data) => handleCardChange(data, index)}
-            />
-          ))}
-        </div>
+        <ListGrades
+          grades={grades}
+          isEdit={isEdit || isNew}
+          onCardEdit={(data) => handleCardChange(data, index)}
+        />
       </div>
     </Card>
   );
