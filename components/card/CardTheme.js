@@ -118,7 +118,7 @@ const CardTheme = (props) => {
         <ListGrades
           grades={grades}
           isEdit={isEdit || isNew}
-          onCardEdit={(data) => handleCardChange(data, index)}
+          onCardEdit={(data,index) => handleCardChange(data, index)}
         />
       </div>
     </Card>

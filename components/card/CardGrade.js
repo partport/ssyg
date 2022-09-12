@@ -9,7 +9,7 @@ const CardGrade = (props) => {
 
   const handleOnBlurInput = (value) => {
     setCardGrade(value.toUpperCase());
-    onCardEdit(value);
+    onCardEdit(value.toUpperCase());
   };
 
   return (
@@ -20,7 +20,7 @@ const CardGrade = (props) => {
           {
             'p-4': !isEdit,
             'p-2': isEdit,
-            'bg-pink-500': cardGrade.startsWith(CARD_GRADE.R),
+            'bg-gradient-to-r from-purple-500 to-pink-500': cardGrade.startsWith(CARD_GRADE.R),
             'bg-yellow-300': cardGrade.startsWith(CARD_GRADE.S),
             'bg-purple-800': cardGrade.startsWith(CARD_GRADE.A),
             'bg-red-600': cardGrade.startsWith(CARD_GRADE.B),

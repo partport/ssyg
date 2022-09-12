@@ -9,8 +9,8 @@ const CardThemeTopFive = (props) => {
         {topFive.map(({ id, point }) => {
           const data = themes.find(({ _id }) => _id === id);
           return (
-            <div className='grid grid-cols-2' key={id}>
-              <p className='font-normal text-gray-700 dark:text-gray-400'>{data.name}</p>
+            <div className='grid grid-cols-2 items-center' key={id}>
+              <p className='font-bold text-gray-700 dark:text-gray-400'>{data.name}</p>
               <ListGrades grades={data.card} />
             </div>
           );
